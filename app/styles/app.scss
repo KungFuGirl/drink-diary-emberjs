@@ -1,3 +1,9 @@
 // Fix for Roboto font path
 $roboto-font-path: '../assets/';
+
 @import "normalize";
+
+.placeholder-size {
+  width: 200px;
+  height: 200px;
+}
