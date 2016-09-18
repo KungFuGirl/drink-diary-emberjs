@@ -2,6 +2,7 @@
 $roboto-font-path: '../assets/';
 
 @import "normalize";
+@import "foo.scss";
 
 .placeholder-size {
   width: 200px;

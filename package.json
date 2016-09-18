@@ -35,6 +35,7 @@
     "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-composability": "0.3.7",
+    "ember-composable-helpers": "1.1.1",
     "ember-data": "^2.7.0",
     "ember-export-application-global": "^1.0.5",
     "ember-keyboard": "1.0.3",
@@ -46,6 +47,7 @@
     "ember-resolver": "^2.0.3",
     "ember-truth-helpers": "1.2.0",
     "ember-welcome-page": "^1.0.1",
+    "emberx-select": "2.2.2",
     "loader.js": "^4.0.1",
     "normalize.css": "4.1.1"
   },

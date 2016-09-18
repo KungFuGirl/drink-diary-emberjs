@@ -7,9 +7,13 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('wine', { path: '/wine/:wine_id' });
+  this.route('wine', { path: '/wines/:wine_id' }, function() {});
   this.route('country');
   this.route('state');
+
+  this.route('wines', function() {
+    this.route('new');
+  });
 });
 
 export default Router;
