@@ -10,21 +10,21 @@
   </fieldset>
   <fieldset class="wine-type">
     <label for="wine-type">Wine Type:</label>
-    {{#x-select id="wine-type" action="setWineType" value=wine.wineType as |xs| }}
+    {{#x-select id="wine-type" action="setWineType" modelAttr=wine.wineType as |xs| }}
       {{#xs.option selected}}Please choose{{/xs.option}}
       {{#each wineTypes as |type|}}
-        {{#xs.option value=type.id}}{{type.name}}{{/xs.option}}
+        {{#xs.option value=type}}{{type.name}}{{/xs.option}}
       {{/each}}
     {{/x-select}}
   </fieldset>
-  {{field-set classname="country" selectElementId="country" label="Country" value=wine.country models=countries selectAction=(action "setCountry")}}
+  {{field-set classname="country" selectElementId="country" label="Country" modelAttr=wine.country models=countries selectAction=(action "setCountry")}}
   {{#if stateOptionsFiltered}} 
-    {{field-set classname="state" selectElementId="state" label="State" value=wine.state models=stateOptionsFiltered selectAction=(action "setState")}}
+    {{field-set classname="state" selectElementId="state" label="State" modelAttr=wine.state models=stateOptionsFiltered selectAction=(action "setState")}}
   {{/if}}
   {{#if wineRegionOptionsFiltered}}
-    {{field-set classname="wine-region" selectElementId="wine-region" label="Wine Region" value=wine.wineRegion models=wineRegionOptionsFiltered selectAction=(action "setWineRegion")}}
+    {{field-set classname="wine-region" selectElementId="wine-region" label="Wine Region" modelAttr=wine.wineRegion models=wineRegionOptionsFiltered selectAction=(action "setWineRegion")}}
   {{/if}}
   {{#if appellationOptionsFiltered}}
-  {{field-set classname="appellation" selectElementId="appellation" label="Appellation" value=wine.appellation models=appellationOptionsFiltered selectAction=(action "setAppellation")}}
+  {{field-set classname="appellation" selectElementId="appellation" label="Appellation" modelAttr=wine.appellation models=appellationOptionsFiltered selectAction=(action "setAppellation")}}
   {{/if}}
 </form>

@@ -1,7 +1,7 @@
 <label for="{{selectElementId}}">{{label}}:</label>
-{{#x-select id=selectElementId action="selectAction" value=value as |xs| }}
-{{#xs.option value=null}}Please Choose{{/xs.option}}
-{{#each models as |model|}}
-{{#xs.option value=model}}{{model.name}}{{/xs.option}}
-{{/each}}
+{{#x-select id=selectElementId action="selectAction" value=modelAttr as |xs| }}
+  {{#xs.option value=null}}Please Choose{{/xs.option}}
+  {{#each models as |model|}}
+    {{#xs.option value=model}}{{model.name}}{{/xs.option}}
+  {{/each}}
 {{/x-select}}

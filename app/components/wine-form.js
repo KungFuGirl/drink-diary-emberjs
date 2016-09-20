@@ -1,125 +1,61 @@
 import Ember from 'ember';
-const {
-  computed,
-  get,
-  set
-} = Ember;
 export default Ember.Component.extend({
   store: Ember.inject.service( 'store' ),
   init() {
-    this._super( ...arguments );
-    set(this, 'countries', this.get( 'store' ).findAll( 'country' ));
-    set(this, 'wineTypes', this.get( 'store' ).findAll( 'wine-type' ));
+    this._super(...arguments);
+    this.set('countries', this.get('store').findAll('country'));
+    this.set('wineTypes', this.get('store').findAll('wine-type'));
+    this.set('appellationOptionsFiltered', null);
   },
-  // https://gist.github.com/lovasoa/3361645
-  arrIntersection: function () {
-    var i, all, shortest, nShortest, n, len, ret = [], obj={}, nOthers;
-    nOthers = arguments.length-1;
-    nShortest = arguments[0].length;
-    shortest = 0;
-    for (i=0; i<=nOthers; i++){
-      n = arguments[i].length;
-      if (n<nShortest) {
-        shortest = i;
-        nShortest = n;
-      }
-    }
-
-    for (i=0; i<=nOthers; i++) {
-      n = (i===shortest)?0:(i||shortest); //Read the shortest array first. Read the first array instead of the shortest
-      len = arguments[n].length;
-      for (var j=0; j<len; j++) {
-        var elem = arguments[n][j];
-        if(obj[elem] === i-1) {
-          if(i === nOthers) {
-            ret.push(elem);
-            obj[elem]=0;
-          } else {
-            obj[elem]=i;
-          }
-        }else if (i===0) {
-          obj[elem]=0;
-        }
-      }
-    }
-    return ret;
-  },
-  stateOptionsFiltered: computed('states.[]', 'currentWineRegion', {
-    get() {
-      if (get(this, 'currentWineRegion')) {
-        // a wine region only has one state
-        // TODO: this works, but the state is not selected. Instead, it goes to the default "pleaes choose"
-        let regionState = get(this, "currentWineRegion.state");
-        return [regionState];
-      } else {
-        // returns all states for the country
-        return get(this, 'states');
-      }
-    }
-  }),
-  wineRegionOptionsFiltered: computed('wineRegions.[]', 'currentState', {
-    get() {
-      if (get(this, 'currentState')) {
-        return get(this, "currentState.wineRegions");
-      } else {
-        return get(this, 'wineRegions');
-      }
-    }
-  }),
-  appellationOptionsFiltered: computed('currentWineRegion', 'currentState', {
-    get() {
-      let state = get(this, 'currentState');
-      let region = get(this, 'currentWineRegion');
-      if (state && region){
-        return this.arrIntersection(state.appellations, region.appellations); 
-        console.log('in the intersection');
-        console.log('**********');
-      } else if (state) {
-        console.log('in the state');
-        return get(state, 'appellations');
-      } else if (region) {
-        console.log('in the region');
-        return get(region, 'appellations');
-      } 
-    }
-  }),
   actions: {
-    setWineType(value, component) {
-      this.set('wine.wineType', value);
-    },
     setCountry(country, component) {
-      this.set( 'wine.country', country );
-      // TODO: all fields need to handle being unset gracefully
-      if(country){
-        // TODO: can I do just one request to get the related records? Currently it makes one request per association
-        let countryStates = country.get('states');
-        this.set('states', countryStates);
-        let countryWineRegions = country.get('wineRegions');
-        this.set('wineRegions', countryWineRegions);
-      }
-      this.set('currentCountry', country);
-      // TODO: ask jake if there is a better way to do this?
-      this.set('currentState', null);
-      this.set('currentWineRegion', null);
-      this.set('currentAppellation', null);
+      this.set('wine.country', country);
+      this.set('wine.state', null);
+      this.set('wine.wineRegion', null);
+      // can't set relationships if the records arent all loaded into the store
+      // https://guides.emberjs.com/v2.8.0/models/relationships/#toc_creating-records
+      country.get('states').then(
+        (states)=>{this.set('states', states);}
+      );
+      country.get('wineRegions').then(
+        (regions)=>{this.set('wineRegions', regions);}
+      );
     },
     setState(state, component) {
-      this.set('wine.state', state);
-      this.set('currentState', state);
-      // reset appellation if it is set
-      this.set('currentAppellation', null);
+
     },
     setWineRegion(region, component) {
-      //TODO: when setting the wine region, the state dropdown should automatically select the proper state. The rest of the states should still display in the dropdown insetad of disappearing as they do now.
-      this.set('wine.wineRegion', region);
-      this.set('currentWineRegion', region);
-      // reset appellation if it is set
-      this.set('currentAppellation', null);
     },
-    setAppellation(appellation, component) {
-      this.set('currentAppellation', appellation);
-      //TODO: should check to see if state/wine region are properly set and align them if they are not
-      this.set('wine.appellation');
+    setAppellation(region, component) {
+    },
+    setWineType(type, component) {
     }
-  }
-});
+  },
+  stateOptionsFiltered: Ember.computed('states.[]', 'wine.wineRegion', {
+    get() {
+      this.get('wine.wineRegion').then((region)=>{
+        if(region){
+          // this properly sets state on wine, but doesn't update the ui's selected value
+          // if region is set on wine, we know the state (if it exists) and can set it automatically
+          this.set('wine.state', region.get('state'));
+        }
+      });
+      return this.get('states');
+    }
+  }),
+  wineRegionOptionsFiltered: Ember.computed('wineRegions.[]', 'wine.state', {
+    get() {
+      this.get('wine.state').then((state)=>{
+        if (state) {
+          // this does not work
+          // should be updating the regions dropdown with only the state's wine regions
+          console.log("should be updating regions to state's regions");
+          return state.get('wineRegions');
+        } 
+      });
+      console.log("wine region optons, no state")
+      // this is getting called too often - it should be only called once when something it watches changes.
+      return this.get('wineRegions');
+    }
+  }) // wineRegionOptionsFiltered
+}); 
