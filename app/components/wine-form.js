@@ -3,8 +3,14 @@ export default Ember.Component.extend({
   store: Ember.inject.service( 'store' ),
   init() {
     this._super(...arguments);
-    this.set('countries', this.get('store').findAll('country'));
-    this.set('wineTypes', this.get('store').findAll('wine-type'));
+    this.get('store').findAll('country').then(
+      (returnedCountries) => { 
+        this.set('countries', returnedCountries);
+      }, null, "GET countries");
+    this.get('store').findAll('wine-type').then(
+      (returnedWineTypes) => { 
+        this.set('wineTypes', returnedWineTypes);
+      }, null, "GET wineTypes");
     this.set('appellationOptionsFiltered', null);
   },
   actions: {
@@ -15,10 +21,10 @@ export default Ember.Component.extend({
       // can't set relationships if the records arent all loaded into the store
       // https://guides.emberjs.com/v2.8.0/models/relationships/#toc_creating-records
       country.get('states').then(
-        (states)=>{this.set('states', states);}
+        (states)=>{this.set('states', states);}, null, "GET country.states inside setCountry"
       );
       country.get('wineRegions').then(
-        (regions)=>{this.set('wineRegions', regions);}
+        (regions)=>{this.set('wineRegions', regions);}, null, "GET country.wineRegions inside getCountry"
       );
     },
     setState(state, component) {
@@ -39,7 +45,7 @@ export default Ember.Component.extend({
           // if region is set on wine, we know the state (if it exists) and can set it automatically
           this.set('wine.state', region.get('state'));
         }
-      });
+      }, null, "get wine region inside stateOptionsFiltered");
       return this.get('states');
     }
   }),
@@ -51,11 +57,10 @@ export default Ember.Component.extend({
           // should be updating the regions dropdown with only the state's wine regions
           console.log("should be updating regions to state's regions");
           return state.get('wineRegions');
-        } 
-      });
-      console.log("wine region optons, no state")
-      // this is getting called too often - it should be only called once when something it watches changes.
-      return this.get('wineRegions');
+        }}, (err)=>{console.log("you have an error")}, "get state.wineRegions in wineRegionOptionsFiltered");}
+   // console.log("wine region optons, no state")
+    // this is getting called too often - it should be only called once when something it watches changes.
+    //return this.get('wineRegions');
     }
-  }) // wineRegionOptionsFiltered
+  ) // wineRegionOptionsFiltered
 }); 
