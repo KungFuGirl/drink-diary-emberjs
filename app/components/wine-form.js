@@ -18,17 +18,22 @@ export default Ember.Component.extend({
       this.set('wine.country', country);
       this.set('wine.state', null);
       this.set('wine.wineRegion', null);
-      // can't set relationships if the records arent all loaded into the store
-      // https://guides.emberjs.com/v2.8.0/models/relationships/#toc_creating-records
-      country.get('states').then(
-        (states)=>{this.set('states', states);}, null, "GET country.states inside setCountry"
-      );
-      country.get('wineRegions').then(
-        (regions)=>{this.set('wineRegions', regions);}, null, "GET country.wineRegions inside getCountry"
-      );
+      if (country) {
+        country.get('states').then(
+          (states)=>{
+            this.set('states', states);
+          }, null, "GET country.states inside setCountry");
+        country.get('wineRegions').then(
+          ( regions ) => {
+            this.set( 'wineRegions', regions);
+          }, null, "GET country.wineRegions inside getCountry");
+      }
     },
     setState(state, component) {
-
+      state.get( 'wineRegions' ).then(
+        (regions) => {
+          this.set('wineRegions', regions);
+        }, null, "GET state.wineRegions");
     },
     setWineRegion(region, component) {
     },
@@ -43,10 +48,12 @@ export default Ember.Component.extend({
         if(region){
           // this properly sets state on wine, but doesn't update the ui's selected value
           // if region is set on wine, we know the state (if it exists) and can set it automatically
-          this.set('wine.state', region.get('state'));
-        }
-      }, null, "get wine region inside stateOptionsFiltered");
-      return this.get('states');
+          region.get('state').then((state)=>{
+            this.set('wine.state', state);
+          });
+        } 
+        return this.get('states');
+      }, null, "get wine region inside stateOptionsFiltered")
     }
   }),
   wineRegionOptionsFiltered: Ember.computed('wineRegions.[]', 'wine.state', {
@@ -57,10 +64,11 @@ export default Ember.Component.extend({
           // should be updating the regions dropdown with only the state's wine regions
           console.log("should be updating regions to state's regions");
           return state.get('wineRegions');
-        }}, (err)=>{console.log("you have an error")}, "get state.wineRegions in wineRegionOptionsFiltered");}
-   // console.log("wine region optons, no state")
-    // this is getting called too often - it should be only called once when something it watches changes.
-    //return this.get('wineRegions');
+        } else {
+          return this.get('wineRegions');
+        }
+      }, (err)=>{console.log("you have an error")}, "get state.wineRegions in wineRegionOptionsFiltered");
+    // this is getting called too often - it should be only called once when something it watches changes, but I see it being called twice when I put in a debugger statement.
     }
-  ) // wineRegionOptionsFiltered
+  }) // wineRegionOptionsFiltered
 }); 
