@@ -14,6 +14,11 @@ Router.map(function() {
   this.route('wines', function() {
     this.route('new');
   });
+
+  this.route('sodas', function() {
+    this.route('new');
+  });
+  this.route('soda', { path: '/sodas/:soda_id' }, function() {});
 });
 
 export default Router;
