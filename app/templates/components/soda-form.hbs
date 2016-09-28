@@ -1,2 +1,56 @@
 <h1>This is soda-form.hbs template to render soda-form component</h1>
-{{yield}}
+<form class="soda-new">
+  <div class="soda-name">
+    <fieldset class="name">
+      <label>Name:</label>
+      {{input value=soda.name}}
+    </fieldset>
+  </div>
+  <div class="soda-brand">
+    <fieldset class="brand">
+      <label>Brand:</label>
+      {{input value=soda.brand}}
+    </fieldset>
+  </div>
+  <div class="soda-parent-company">
+    <fieldset class="parent-company">
+      <label>Parent company:</label>
+      {{input value=soda.parentCompany}}
+    </fieldset>
+  </div>
+  <div class="soda-country">
+    <fieldset class="country">
+      <label>Country:</label>
+      <select disabled={{disabled}} class="{{class}}" {{action 'change' on='change'}}>
+      {{#if prompt}}
+        <option disabled selected={{is-not selection}}>
+          {{prompt}}
+        </option>
+      {{/if}}
+      {{#each countries as |country|}}
+        <option value={{soda.country}}>
+          {{country.name}}
+        </option>
+      {{/each}}
+      </select>
+    </fieldset>
+  </div>
+  <div class="soda-origin-data">
+    <fieldset class="origin-data">
+      <label>Additional info on soda origin:</label>
+      {{input value=soda.originData}}
+    </fieldset>
+  </div>
+   <div class="soda-diet">
+    <fieldset class="diet">
+      <label>Diet:</label>
+      {{input type="checkbox" name="isDiet" checked=isDiet}}
+    </fieldset>
+  </div>
+  <div class="soda-caffeinated">
+    <fieldset class="caffeinated">
+      <label>Caffeinated:</label>
+      {{input type="checkbox" name="isCaffeinated" checked=isCaffeinated}}
+    </fieldset>
+  </div>
+</form>
