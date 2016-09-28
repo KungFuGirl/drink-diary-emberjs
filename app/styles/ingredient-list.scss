@@ -12,12 +12,16 @@
     width: 10em;
     list-style-type: none;
   }
+}
 
-  .summary {
-    display: inline-block;
-  }
-
-  .edit {
+.ingredient-list-edit {
+  .ingredient-item {
     display: block;
+  }
+}
+
+.ingredient-list-summary {
+  .ingredient-item {
+    display: inline-block;  
   }
 }
