@@ -8,29 +8,24 @@ export default Ember.Component.extend({
   optionValuePath: 'value',
   optionLabelPath: 'label',
   store: Ember.inject.service( 'store' ),
+  cancelOnCbClick: false,
+  
+  isDiet: false,
   init() {
     this._super( ...arguments );
     set(this, 'countries', this.get( 'store' ).findAll( 'country' ));
   },
   actions: {
-    change: function () {
-      let selectedIndex = this.$('select')[0].selectedIndex;
-      let countries = this.get('countries');
-      
-      // decrement index by 1 if we have a prompt
-      let hasPrompt = !!this.get('prompt');
-      let countryIndex = hasPrompt ? selectedIndex - 1 : selectedIndex;
-      let _selection = country[countryIndex];
-  
-      this.sendAction('willChangeAction', _selection);
+      setCountry(country, component) {
+      this.set('soda.country', country);
+      },
 
-      if (this.get('optionValuePath')) {
-        this.set('selection', _selection[this.get('optionValuePath')]);
-      } else {
-        this.set('selection', _selection);
+      
+      setDiet(isDiet, component) {
+        console.log(isDiet);
+        if (isDiet )
+      this.set('soda.isDiet', true);
       }
 
-      this.sendAction('didChangeAction', _selection);
-    }
-  }
+   }
 });

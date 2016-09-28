@@ -21,12 +21,7 @@
   <div class="soda-country">
     <fieldset class="country">
       <label>Country:</label>
-      <select disabled={{disabled}} class="{{class}}" {{action 'change' on='change'}}>
-      {{#if prompt}}
-        <option disabled selected={{is-not selection}}>
-          {{prompt}}
-        </option>
-      {{/if}}
+      <select {{action 'setCountry'}}>
       {{#each countries as |country|}}
         <option value={{soda.country}}>
           {{country.name}}
@@ -44,7 +39,7 @@
    <div class="soda-diet">
     <fieldset class="diet">
       <label>Diet:</label>
-      {{input type="checkbox" name="isDiet" checked=isDiet}}
+      {{input type="checkbox" name="isDiet" checked=isDiet click=(action "setDiet")}}
     </fieldset>
   </div>
   <div class="soda-caffeinated">
