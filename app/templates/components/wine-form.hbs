@@ -8,15 +8,7 @@
     <label>Name:</label>
     {{input value=wine.name}}
   </fieldset>
-  <fieldset class="wine-type">
-    <label for="wine-type">Wine Type:</label>
-    {{#x-select id="wine-type" action="setWineType" value=wine.wineType as |xs| }}
-      {{#xs.option selected}}Please choose{{/xs.option}}
-      {{#each wineTypes as |type|}}
-        {{#xs.option value=type.id}}{{type.name}}{{/xs.option}}
-      {{/each}}
-    {{/x-select}}
-  </fieldset>
+  {{field-set classname="wine-type" selectElementId="wine-type" label="wine-type" value=wine.wineType models=wineTypes selectAction=(action "setWineType")}}
   {{field-set classname="country" selectElementId="country" label="Country" value=wine.country models=countries selectAction=(action "setCountry")}}
   {{#if stateOptionsFiltered}} 
     {{field-set classname="state" selectElementId="state" label="State" value=wine.state models=stateOptionsFiltered selectAction=(action "setState")}}
