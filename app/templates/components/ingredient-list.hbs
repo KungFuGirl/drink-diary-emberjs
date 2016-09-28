@@ -1,0 +1,7 @@
+<ul class="ingredient-list">
+  {{#each ingredients as | ingredient |}}
+  <li class="ingredient-item {{summaryOrEdit}}">{{ingredient.name}}</li>
+    {{/each}}
+</ul>
+<br>
+<button id="edit-ingredients" {{action 'toggleEdit'}}>edit</button>
