@@ -49,6 +49,7 @@
     "ember-truth-helpers": "1.2.0",
     "ember-welcome-page": "^1.0.1",
     "emberx-select": "2.2.2",
+    "liquid-fire": "0.26.1",
     "loader.js": "^4.0.1",
     "normalize.css": "4.1.1"
   },

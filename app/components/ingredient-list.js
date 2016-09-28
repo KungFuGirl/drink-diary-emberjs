@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  ingredients: [{ name: 'carbonated water'}, { name: 'high fructose corn syrup' }, { name: 'caramel color'}, { name: 'phosphoric acid' }],
+  ingredients: [{ id: 1, name: 'carbonated water'}, { id: 2, name: 'high fructose corn syrup' }, { id: 3, name: 'caramel color'}, { id: 4,name: 'phosphoric acid' }],
   summaryOrEdit: "summary",
   actions: {
     toggleEdit: function() {
