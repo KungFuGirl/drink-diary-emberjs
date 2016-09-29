@@ -1,15 +1,10 @@
 <p>stuff</p>
-{{#liquid-bind summaryOrEdit as |currentEditStatus|}}
-<!--
-<ul id="ingredient-list" class={{liquid-bind summaryOrEdit}}>
-  -->
-  <ul id="ingredient-list" class={{currentEditStatus}}>
-    {{#each ingredients as | ingredient |}}
-      <li class="ingredient-item" data-ingredient-id={{ingredient.id}}>
-       {{ingredient.name}}
-      </li>
-    {{/each}}
-  </ul>
-{{/liquid-bind}}
+<ul id="ingredient-list" class={{summaryOrEdit}}>
+  {{#each ingredients as | ingredient |}}
+    <li class="ingredient-item" data-ingredient-id={{ingredient.id}}>
+     {{ingredient.name}}
+    </li>
+  {{/each}}
+</ul>
 <br>
 <button id="edit-ingredients" {{action 'toggleEdit'}}>edit</button>
