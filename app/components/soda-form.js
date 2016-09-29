@@ -15,22 +15,9 @@ export default Ember.Component.extend({
 
   actions: {
       setCountry(countryId) {
-        console.log(countryId);
-        // debugger;
-        this.get('store').queryRecord('country', {filter:
-            { id: countryId }
-          }).then((countryObj)=>{
-          console.log(countryObj);
-           debugger;
-          //this.set('soda.country', countryObj.objectAt(countryId));
-        });
-
-      //console.log(selectedCountry);
-      //console.log(selectedCountry.get('name'));
-      //this.set('soda.country', selectedCountry );
+        this.set('soda.country', this.get('store').peekRecord('country', countryId));
       },
-
-
+      // setDiet needs work
       setDiet(isDiet) {
         console.log(isDiet);
         this.set('soda.isDiet', true);
