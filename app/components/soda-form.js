@@ -12,12 +12,22 @@ export default Ember.Component.extend({
     this._super( ...arguments );
     set(this, 'countries', this.get( 'store' ).findAll( 'country' ));
   },
-  actions: {
-      setCountry(country) {
-        console.log(country);
-        debugger;
 
-      this.set('soda.country', country);
+  actions: {
+      setCountry(countryId) {
+        console.log(countryId);
+        // debugger;
+        this.get('store').queryRecord('country', {filter:
+            { id: countryId }
+          }).then((countryObj)=>{
+          console.log(countryObj);
+           debugger;
+          //this.set('soda.country', countryObj.objectAt(countryId));
+        });
+
+      //console.log(selectedCountry);
+      //console.log(selectedCountry.get('name'));
+      //this.set('soda.country', selectedCountry );
       },
 
 

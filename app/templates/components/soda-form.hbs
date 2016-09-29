@@ -23,8 +23,7 @@
       <label>Country:</label>
       <select onchange={{action 'setCountry' value="target.value"}}>
       {{#each countries as |countryChoice|}}
-
-        <option value={{countryChoice}} selected={{eq country countryChoice}}>{{countryChoice.name}}</option>
+        <option value={{countryChoice.id}} selected={{eq country countryChoice}}>{{countryChoice.name}}</option>
       {{/each}}
       </select>
     </fieldset>
