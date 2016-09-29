@@ -11,6 +11,18 @@
     overflow: hidden;
     width: 10em;
     list-style-type: none;
+    animation: skew 3s infinite;
+    transform: skew(20deg);
+    animation-direction: alternate;
+  }
+}
+
+@keyframes skew {
+  0% {
+    transform: skewX(20deg);
+  }
+  100% {
+    transform: skewY(-20deg);
   }
 }
 
@@ -25,3 +37,4 @@
     display: inline-block;  
   }
 }
+
