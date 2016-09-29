@@ -21,11 +21,10 @@
   <div class="soda-country">
     <fieldset class="country">
       <label>Country:</label>
-      <select {{action 'setCountry'}}>
-      {{#each countries as |country|}}
-        <option value={{soda.country}}>
-          {{country.name}}
-        </option>
+      <select onchange={{action 'setCountry' value="target.value"}}>
+      {{#each countries as |countryChoice|}}
+
+        <option value={{countryChoice}} selected={{eq country countryChoice}}>{{countryChoice.name}}</option>
       {{/each}}
       </select>
     </fieldset>
