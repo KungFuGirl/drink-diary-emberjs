@@ -8,7 +8,8 @@ module.exports = function(defaults) {
     // Add options here
     sassOptions: {
       includePaths: [
-        'bower_components/materialize/sass'
+        'bower_components/materialize/sass',
+        'node_modules/ember-power-select/app/styles'
       ],
       nodeSass: nodeSass // Workaround for ember-cli-sass bug https://github.com/aexmachina/ember-cli-sass/issues/117
     }

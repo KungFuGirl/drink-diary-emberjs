@@ -14,8 +14,12 @@ export default Ember.Component.extend({
   },
 
   actions: {
-      setCountry(countryId) {
-        this.set('soda.country', this.get('store').peekRecord('country', countryId));
+      // setCountry(countryId) {
+      //   this.set('soda.country', this.get('store').peekRecord('country', countryId));
+      // },
+      setCountry(country) {
+        console.log(country);
+        this.set('soda.country', country);
       },
       // setDiet needs work
       setDiet(isDiet) {

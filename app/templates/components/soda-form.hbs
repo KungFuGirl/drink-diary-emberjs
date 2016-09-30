@@ -21,11 +21,16 @@
   <div class="soda-country">
     <fieldset class="country">
       <label>Country:</label>
-      <select onchange={{action 'setCountry' value="target.value"}}>
+      <!-- <select onchange={{action 'setCountry' value="target.value"}}>
       {{#each countries as |countryChoice|}}
         <option value={{countryChoice.id}} selected={{eq country countryChoice}}>{{countryChoice.name}}</option>
       {{/each}}
-      </select>
+      </select> -->
+
+      {{#power-select selected=soda.country options=countries onchange=(action "setCountry") as |country|}}
+        {{country.name}}
+      {{/power-select}}
+
     </fieldset>
   </div>
   <div class="soda-origin-data">
