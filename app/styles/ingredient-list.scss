@@ -1,7 +1,8 @@
-#ingredient-list {
+.list {
+  width: 100%;
+  background-color: blue;
 
   .ingredient-item {
-    list-style: none;
     background: #d1703c;
     color: #fff;
     height: 2em;
@@ -10,31 +11,29 @@
     padding: 0 0.5em;
     overflow: hidden;
     width: 10em;
-    list-style-type: none;
-    animation: skew 3s infinite;
-    transform: skew(20deg);
-    animation-direction: alternate;
-  }
-}
-
-@keyframes skew {
-  0% {
-    transform: skewX(20deg);
-  }
-  100% {
-    transform: skewY(-20deg);
+    float: left;
   }
 }
 
 .ingredient-list-edit {
   .ingredient-item {
-    display: block;
+    width: 100%;
+    transition: width 5s ease-in;
   }
 }
 
 .ingredient-list-summary {
   .ingredient-item {
-    display: inline-block;  
+    width: 10em;
+    transition: width 5s ease-in;
   }
+
 }
 
+.clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
