@@ -21,16 +21,9 @@
   <div class="soda-country">
     <fieldset class="country">
       <label>Country:</label>
-      <!-- <select onchange={{action 'setCountry' value="target.value"}}>
-      {{#each countries as |countryChoice|}}
-        <option value={{countryChoice.id}} selected={{eq country countryChoice}}>{{countryChoice.name}}</option>
-      {{/each}}
-      </select> -->
-
       {{#power-select selected=soda.country options=countries onchange=(action "setCountry") as |country|}}
         {{country.name}}
       {{/power-select}}
-
     </fieldset>
   </div>
   <div class="soda-origin-data">
@@ -42,13 +35,13 @@
    <div class="soda-diet">
     <fieldset class="diet">
       <label>Diet:</label>
-      {{input type="checkbox" name="isDiet" checked=isDiet click=(action "setDiet")}}
+      <input type="checkbox" checked={{checked}} value={{value}} onchange={{action 'setDiet' value='target.checked'}}/>
     </fieldset>
   </div>
   <div class="soda-caffeinated">
     <fieldset class="caffeinated">
       <label>Caffeinated:</label>
-      {{input type="checkbox" name="isCaffeinated" checked=isCaffeinated}}
+      <input type="checkbox" checked={{checked}} value={{value}} onchange={{action 'setCaffeinated' value='target.checked'}}/>
     </fieldset>
   </div>
 </form>
