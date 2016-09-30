@@ -1,5 +1,5 @@
 <h1>This is soda-form.hbs template to render soda-form component</h1>
-<form class="soda-new">
+<form class="soda-new" {{action 'saveSoda' soda on='submit'}}>
   <div class="soda-name">
     <fieldset class="name">
       <label>Name:</label>
@@ -43,5 +43,8 @@
       <label>Caffeinated:</label>
       <input type="checkbox" checked={{checked}} value={{value}} onchange={{action 'setCaffeinated' value='target.checked'}}/>
     </fieldset>
+  </div>
+  <div class="submit-button">
+    <button type="submit" disabled={{soda.isNotValid}}>Save</button>
   </div>
 </form>
