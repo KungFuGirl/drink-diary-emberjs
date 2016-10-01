@@ -1,8 +1,8 @@
 <p>stuff</p>
-<div id="ingredient-list" class="list clearfix {{summaryOrEdit}}">
-  {{#each ingredients as | ingredient |}}
+<div id="ingredient-list" class="clearfix {{summaryOrEdit}}">
+  {{#each ingredients as | ingredient index |}}
     <div class="ingredient-item" data-ingredient-id={{ingredient.id}}>
-     {{ingredient.name}}
+      {{ingredient.name}}{{list-commas index ingredients.length}}
     </div>
   {{/each}}
 </div>

@@ -1,33 +1,13 @@
-.list {
+#ingredient-list {
   width: 100%;
-  background-color: blue;
 
   .ingredient-item {
-    background: #d1703c;
-    color: #fff;
     height: 2em;
     line-height: 2em;
-    margin: 2px 0;
-    padding: 0 0.5em;
-    overflow: hidden;
-    width: 10em;
-    float: left;
-  }
-}
+    padding: 0 0.0625em;
+    display: inline-block;
 
-.ingredient-list-edit {
-  .ingredient-item {
-    width: 100%;
-    transition: width 5s ease-in;
   }
-}
-
-.ingredient-list-summary {
-  .ingredient-item {
-    width: 10em;
-    transition: width 5s ease-in;
-  }
-
 }
 
 .clearfix:after {
