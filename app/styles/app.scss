@@ -5,14 +5,5 @@ $ember-power-select-border-radius: 0;
 
 @import "ember-power-select";
 @import "normalize";
-@import "foo.scss";
-
-.placeholder-size {
-  width: 200px;
-  height: 200px;
-}
-
-//Width of the select drop down for power-select: soda new page;
-.ember-power-select-trigger {
-  width: 200px;
-}
+@import "power-select";
+@import "main-styling";

@@ -11,7 +11,7 @@ export default DS.Model.extend({
   color: DS.attr('string'),
   // creator: DS.belongsTo('creator'),
   // lastEditor: DS.belongsTo('last-editor'),
-  photos: DS.hasMany('photo'),
+  // photos: DS.hasMany('photo'),
   notes: DS.hasMany('note')
 });
 
