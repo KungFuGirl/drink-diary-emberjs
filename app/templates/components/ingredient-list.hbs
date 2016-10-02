@@ -1,10 +1,13 @@
-<p>stuff</p>
-<div id="ingredient-list" class="clearfix {{summaryOrEdit}}">
-  {{#each ingredients as | ingredient index |}}
-    <div class="ingredient-item" data-ingredient-id={{ingredient.id}}>
-      {{ingredient.name}}{{list-commas index ingredients.length}}
-    </div>
-  {{/each}}
+<div class="container">
+  <fieldset id="ingredients" class="clearfix {{summaryoredit}}">
+    <label class="ingredients-label">{{ingredientsLabel}}</label>
+    <ul class="ingredient-list">
+      {{#each ingredients as | ingredient index |}}
+        <li class="ingredient-item">
+          {{ingredient.name}}{{list-commas index ingredients.length}}
+        </li>
+      {{/each}}
+    </ul>
+    <button id="edit-ingredients" {{action 'toggleedit'}}>edit</button>
+  </fieldset>
 </div>
-<br>
-<button id="edit-ingredients" {{action 'toggleEdit'}}>edit</button>
