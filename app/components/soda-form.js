@@ -9,6 +9,7 @@ export default Ember.Component.extend({
   init() {
     this._super( ...arguments );
     set(this, 'countries', this.get('store').findAll('country'));
+    set(this, 'ingredients', this.get('store').findAll('ingredient'));
   },
 
   actions: {

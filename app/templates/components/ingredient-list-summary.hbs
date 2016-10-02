@@ -1,0 +1,7 @@
+<ul class="ingredient-list-items">
+  {{#each ingredients as | ingredient index |}}
+  <li class="ingredient-item">
+  {{ingredient.name}}{{list-commas index ingredients.length}}
+  </li>
+  {{/each}}
+</ul>

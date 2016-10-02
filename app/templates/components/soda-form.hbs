@@ -20,12 +20,15 @@
   </div>
   <div class="soda-country">
     <fieldset class="country">
-      <label>Country:</label>
-      {{#power-select selected=soda.country options=countries onchange=(action "setCountry") as |country|}}
-        {{country.name}}
-      {{/power-select}}
+      <label class="country-label">Country:</label>
+      <div class="country-select">
+        {{#power-select selected=soda.country options=countries onchange=(action "setCountry") as |country|}}
+          {{country.name}}
+        {{/power-select}}
+      </div>
     </fieldset>
   </div>
+  {{ingredient-list}}
   <div class="soda-origin-data">
     <fieldset class="origin-data">
       <label>Additional info on soda origin:</label>

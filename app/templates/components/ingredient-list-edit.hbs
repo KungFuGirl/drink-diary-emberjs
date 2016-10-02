@@ -1,0 +1,13 @@
+<div> 
+{{#power-select-with-create
+  options=ingredientOptions
+  multiple=true
+  searchField="name"
+  selected=ingredients
+  onchange=(action (mut ingredients))
+  oncreate=(action "createOnEnter")
+  showCreateWhen=(action "hideCreateOptionOnSameName")
+  as |ingredient|}}
+  {{ingredient.name}}
+{{/power-select-with-create}}
+</div>
