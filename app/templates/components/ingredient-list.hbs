@@ -1,13 +1,15 @@
 <div class="container">
   <fieldset id="ingredients">
     <label class="ingredients-label">{{ingredientsLabel}}</label>
-    {{#liquid-unless isEdit}}
+    {{#unless isEdit}}
       {{ingredient-list-summary ingredients=ingredients}}
     {{else}}
-      {{ingredient-list-edit ingredients=ingredients ingredientOptions=ingredientOptions}}
-    {{/liquid-unless}}
-    <div class="edit-ingredients-button">
-      <button {{action 'toggleEdit'}}>{{if isEdit "save" "edit"}}</button>
-    </div>
+      {{ingredient-list-edit ingredients=ingredients allIngredientOptions=allIngredientOptions}}
+    {{/unless}}
+    {{#unless isNew}}
+      <div class="edit-ingredients-button">
+        <button {{action 'toggleEdit'}}>{{if isEdit "save" "edit"}}</button>
+      </div>
+    {{/unless}}
   </fieldset>
 </div>

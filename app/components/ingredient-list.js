@@ -1,9 +1,32 @@
 import Ember from 'ember';
+import _ from 'underscore';
+const {
+  computed,
+  get,
+  set
+} = Ember;
 
 export default Ember.Component.extend({
-  ingredients: [{ id: 1, name: 'carbonated water'}, { id: 2, name: 'high fructose corn syrup' }, { id: 3, name: 'caramel color'}, { id: 4,name: 'phosphoric acid' }, {id: 5, name: "natural flavors"}, {id: 6, name: "caffeine"}],
-  ingredientOptions: [{ id: 1, name: 'carbonated water'}, { id: 2, name: 'high fructose corn syrup' }, { id: 3, name: 'caramel color'}, { id: 4,name: 'phosphoric acid' }, {id: 5, name: "natural flavors"}, {id: 6, name: "caffeine"}, {id:7, name: "apple juice"}, {id: 8, name: "blackberries"}, {id:9, name: "cane sugar"}, {id:10, name: "the tears of a newborn"}],
-  isEdit: false,
+  ingredients: null, 
+  allIngredientOptions: null,
+  // defaults and options for the select depend on whether or not we are viewing a soda, editing a soda, or creating a new soda
+
+  /*
+  currentIngredientOptions: computed('allIngredientOptions.[]', 'ingredients.[]', {
+    get() {
+      return _.difference(get(this,allIngredientOptions), get(this, ingredients));
+    }
+  }), 
+  */
+  isNew: true,
+  // isEdit changes whether the ingredients are displayed editable or not 
+  isEdit: function() {
+    if (get(this, 'isNew')) {
+      return true;
+    } else {
+      return false;
+    }
+  },
   ingredientsLabel: "ingredients",
   actions: {
     toggleEdit: function() {
@@ -11,4 +34,3 @@ export default Ember.Component.extend({
     }
   }
 });
-

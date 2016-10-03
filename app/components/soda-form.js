@@ -1,6 +1,7 @@
 import Ember from 'ember';
 const {
-  set
+  set,
+  get
 } = Ember;
 
 export default Ember.Component.extend({
@@ -8,10 +9,13 @@ export default Ember.Component.extend({
   
   init() {
     this._super( ...arguments );
-    set(this, 'countries', this.get('store').findAll('country'));
-    set(this, 'ingredients', this.get('store').findAll('ingredient'));
+    get(this, 'store').findAll('country').then((countries)=>{
+      this.set('countries', countries);
+    }),
+    get(this, 'store').findAll('ingredient').then((ingredients)=> {
+      this.set('allIngredientOptions', ingredients);
+    })
   },
-
   actions: {
       setCountry(country) {
         this.set('soda.country', country);

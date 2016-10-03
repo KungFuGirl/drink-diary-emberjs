@@ -28,7 +28,8 @@
       </div>
     </fieldset>
   </div>
-  {{ingredient-list}}
+  <!-- isNew is hardcoding this form to display properly for new sodas, if we decide to reuse these components for new and show, we should set this in a controller somewhere later on-->
+  {{ingredient-list allIngredientOptions=allIngredientOptions isNew=true}}
   <div class="soda-origin-data">
     <fieldset class="origin-data">
       <label>Additional info on soda origin:</label>
