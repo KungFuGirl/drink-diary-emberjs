@@ -1,14 +1,14 @@
 <div class="container">
-  <fieldset id="ingredients">
-    <label class="ingredients-label">{{ingredientsLabel}}</label>
+  <fieldset class="searchable-tag-list">
+    <label class="label">{{labelText}}</label>
     {{#unless isEdit}}
-      {{ingredient-list-summary ingredients=ingredients}}
+      {{searchable-tag-list-summary selectedOptions=selectedOptions}}
     {{else}}
-      {{ingredient-list-edit ingredients=ingredients allIngredientOptions=allIngredientOptions}}
+      {{searchable-tag-list-edit selectedOptions=selectedOptions allOptions=allOptions listItemModel=listItemModel}}
     {{/unless}}
     <!-- needs a better way to check if there should be a way to switch between modes, but can't do this till we figure out show and edit flows -->
     {{#unless isEditDefault}}
-      <div class="edit-ingredients-button">
+      <div class="edit-button">
         <button {{action 'toggleEdit'}}>{{if isEdit "save" "edit"}}</button>
       </div>
     {{/unless}}

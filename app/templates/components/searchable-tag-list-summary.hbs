@@ -1,0 +1,7 @@
+<ul class="searchable-tag-list-items">
+  {{#each selectedOptions as | option index |}}
+    <li class="searchable-tag-list-item">
+      {{option.name}}{{list-commas index selectedOptions.length}}
+    </li>
+  {{/each}}
+</ul>

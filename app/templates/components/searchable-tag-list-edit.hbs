@@ -1,14 +1,14 @@
 <div> 
 {{#power-select-with-create
-  options=currentIngredientOptions
+  options=currentOptions
   multiple=true
   searchField="name"
-  selected=ingredients
-  onchange=(action (mut ingredients))
+  selected=selectedOptions
+  onchange=(action (mut selectedOptions))
   oncreate=(action "createOnEnter")
-  placeholder="begin typing to add ingredients"
+  placeholder="begin typing to add items"
   showCreateWhen=(action "hideCreateOptionOnSameName")
-  as |ingredient|}}
-  {{ingredient.name}}
+  as |option|}}
+  {{option.name}}
 {{/power-select-with-create}}
 </div>

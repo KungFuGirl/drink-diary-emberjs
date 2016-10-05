@@ -11,9 +11,12 @@ export default Ember.Component.extend({
     this._super( ...arguments );
     get(this, 'store').findAll('country').then((countries)=>{
       this.set('countries', countries);
-    }),
+    });
     get(this, 'store').findAll('ingredient').then((ingredients)=> {
       this.set('allIngredientOptions', ingredients);
+    });
+    get(this, 'store').findAll('flavor').then((flavors)=> {
+      this.set('allFlavorOptions', flavors);
     })
   },
   actions: {

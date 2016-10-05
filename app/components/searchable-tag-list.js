@@ -1,23 +1,19 @@
 import Ember from 'ember';
-const {
-  computed,
-  get,
-  set
-} = Ember;
 
 export default Ember.Component.extend({
-  ingredients: null,
-  allIngredientOptions: null,
+  selectedOptions: null,
+  allOptions: null,
+  listItemModel: null,
   isEditDefault: null,
-  // isEdit changes whether the ingredients are displayed editable or not 
+  // isEdit changes whether the option list is displayed editable or not 
   isEdit: Ember.computed('isEditDefault', function() {
-    if (get(this, 'isEditDefault')) {
+    if (Ember.get(this, 'isEditDefault')) {
       return true;
     } else {
       return false;
     }
   }),
-  ingredientsLabel: "ingredients",
+  labelText: null,
   actions: {
     toggleEdit: function() {
       this.toggleProperty('isEdit');
