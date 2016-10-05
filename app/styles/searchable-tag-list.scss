@@ -21,14 +21,14 @@
     font-weight: 700;
   }
 
-  .ingredient-list-items {
+  .searchable-tag-list-items {
     @include flex-center;
     list-style: none;
     padding: 0;
     margin: 0.5em 0;
   }
 
-  .ingredient-item {
+  .searchable-tag-list-item {
     height: 1.2em;
     line-height: 1.2em;
     padding: 0 0.0625em;
@@ -36,7 +36,7 @@
     text-transform: capitalize;
   }
   
-  .edit--button {
+  .edit-button {
     @include flex-center;
   }
 }

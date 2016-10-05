@@ -17,7 +17,7 @@ export default Ember.Component.extend({
     });
     get(this, 'store').findAll('flavor').then((flavors)=> {
       this.set('allFlavorOptions', flavors);
-    })
+    });
   },
   actions: {
       setCountry(country) {
