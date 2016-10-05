@@ -1,24 +1,20 @@
 import Ember from 'ember';
-import _ from 'underscore';
 
 export default Ember.Component.extend({
   ingredients: null,
   allIngredientOptions: null,
+  // what options are in the dropdown should not contain ingredients 
+  // already selected
   currentIngredientOptions: Ember.computed('allIngredientOptions.[]', 'ingredients.[]', {
     get() {
       let allIngredients = this.get('allIngredientOptions');
       let ingredients = this.get('ingredients');
-      let currentIngredientIds = _.pluck(ingredients, 'id');
-      if(_.isEmpty(ingredients) || _.isNull(ingredients) || _.isUndefined(ingredients)) {
+      // check for existence in "currentIngredients" by id, hopefully faster than Ember.Enumerable.contains but I would need to benchmark
+      let currentIngredientIds = ingredients && ingredients.length ? ingredients.map(ingr => ingr.get('id')) : null;
+     if(!currentIngredientIds) { 
         return allIngredients;
       } else {
-        //doesn't work because the underscore library is just a shim, and doesn't work with ember arrays or enumerables, only with pojos
-        let foo =  _.reject(allIngredients, function(ingredientOption) {
-          return _.contains(currentIngredientIds, ingredientOption.get(id));
-          // or
-          // return _.findWhere(ingredients, currentIngredient);
-          // seems faster to do a check on ids, but I should benchmark it
-        });
+        return allIngredients.reject(ingr => currentIngredientIds.contains(ingr.get('id')));
       }
     }
   }),
