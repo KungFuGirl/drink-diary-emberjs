@@ -20,12 +20,16 @@
   </div>
   <div class="soda-country">
     <fieldset class="country">
-      <label>Country:</label>
-      {{#power-select selected=soda.country options=countries onchange=(action "setCountry") as |country|}}
-        {{country.name}}
-      {{/power-select}}
+      <label class="country-label">Country:</label>
+      <div class="country-select">
+        {{#power-select selected=soda.country options=countries onchange=(action "setCountry") as |country|}}
+          {{country.name}}
+        {{/power-select}}
+      </div>
     </fieldset>
   </div>
+  <!-- isEditDefault is hardcoding this form to display properly for new sodas, if we decide to reuse these components for new and show, we should set this in a controller somewhere later on-->
+  {{ingredient-list allIngredientOptions=allIngredientOptions isEditDefault=true}}
   <div class="soda-origin-data">
     <fieldset class="origin-data">
       <label>Additional info on soda origin:</label>

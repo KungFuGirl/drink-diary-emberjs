@@ -1,0 +1,42 @@
+@mixin flex-center {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.container {
+  @include flex-center;
+}
+
+#ingredients {
+  border: 0;
+  font-family: 'Gotham-rounded','Gotham SSm A','Gotham SSm B',"Helvetica Neue",Helvetica,Arial,sans-serif;
+  width: 80%;
+  @include flex-center;
+
+  .ingredients-label {
+    @include flex-center;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 700;
+  }
+
+  .ingredient-list-items {
+    @include flex-center;
+    list-style: none;
+    padding: 0;
+    margin: 0.5em 0;
+  }
+
+  .ingredient-item {
+    height: 1.2em;
+    line-height: 1.2em;
+    padding: 0 0.0625em;
+    display: inline-block;
+    text-transform: capitalize;
+  }
+  
+  .edit-ingredients-button {
+    @include flex-center;
+  }
+}
