@@ -6,7 +6,8 @@
     {{else}}
       {{ingredient-list-edit ingredients=ingredients allIngredientOptions=allIngredientOptions}}
     {{/unless}}
-    {{#unless isNew}}
+    <!-- needs a better way to check if there should be a way to switch between modes, but can't do this till we figure out show and edit flows -->
+    {{#unless isEditDefault}}
       <div class="edit-ingredients-button">
         <button {{action 'toggleEdit'}}>{{if isEdit "save" "edit"}}</button>
       </div>

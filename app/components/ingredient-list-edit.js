@@ -10,7 +10,7 @@ export default Ember.Component.extend({
       let allIngredients = this.get('allIngredientOptions');
       let ingredients = this.get('ingredients');
       // check for existence in "currentIngredients" by id, hopefully faster than Ember.Enumerable.contains but I would need to benchmark
-      let currentIngredientIds = ingredients && ingredients.length ? ingredients.map(ingr => ingr.get('id')) : null;
+      let currentIngredientIds = ingredients && allIngredients && ingredients.length ? ingredients.map(ingr => ingr.get('id')) : null;
      if(!currentIngredientIds) { 
         return allIngredients;
       } else {
