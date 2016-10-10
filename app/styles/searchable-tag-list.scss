@@ -8,27 +8,27 @@
   @include flex-center;
 }
 
-#ingredients {
+.searchable-tag-list {
   border: 0;
   font-family: 'Gotham-rounded','Gotham SSm A','Gotham SSm B',"Helvetica Neue",Helvetica,Arial,sans-serif;
   width: 80%;
   @include flex-center;
 
-  .ingredients-label {
+  .label {
     @include flex-center;
     text-transform: uppercase;
     font-size: 1em;
     font-weight: 700;
   }
 
-  .ingredient-list-items {
+  .searchable-tag-list-items {
     @include flex-center;
     list-style: none;
     padding: 0;
     margin: 0.5em 0;
   }
 
-  .ingredient-item {
+  .searchable-tag-list-item {
     height: 1.2em;
     line-height: 1.2em;
     padding: 0 0.0625em;
@@ -36,7 +36,7 @@
     text-transform: capitalize;
   }
   
-  .edit-ingredients-button {
+  .edit-button {
     @include flex-center;
   }
 }

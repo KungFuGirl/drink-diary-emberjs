@@ -28,8 +28,21 @@
       </div>
     </fieldset>
   </div>
-  <!-- isEditDefault is hardcoding this form to display properly for new sodas, if we decide to reuse these components for new and show, we should set this in a controller somewhere later on-->
-  {{ingredient-list allIngredientOptions=allIngredientOptions isEditDefault=true}}
+  <!-- isEditDefault is hardcoding this form to display properly for new sodas, if we decide to reuse these components for new and show, we should set this in a route somewhere later on-->
+  <div class="ingredient-list">
+    {{searchable-tag-list allOptions=allIngredientOptions  
+                          selectedOptions=soda.ingredients
+                          isEditDefault=true 
+                          listItemModel='ingredient' 
+                          labelText="ingredients"}}
+  </div>
+  <div class="flavor-list">
+    {{searchable-tag-list allOptions=allFlavorOptions    
+                          selectedOptions=soda.flavors 
+                          isEditDefault=true 
+                          listItemModel='ingredient' 
+                          labelText="flavors"}}
+  </div>
   <div class="soda-origin-data">
     <fieldset class="origin-data">
       <label>Additional info on soda origin:</label>
