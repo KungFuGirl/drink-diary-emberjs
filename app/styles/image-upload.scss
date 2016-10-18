@@ -1,0 +1,13 @@
+.resize-container {
+  position: relative;
+  display: inline-block;
+  cursor: move;
+  margin: 0 auto;
+}
+.resize-container img {
+  display: block;
+}
+.reize-container:hover img,
+.resize-container:active img {
+  outline: 2px dashed rgba(222,60,80,.9);
+}
