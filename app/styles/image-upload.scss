@@ -6,8 +6,19 @@
 }
 .resize-container img {
   display: block;
+  &:hover, &:active {
+    outline: 2px dashed rgba(222,60,80,.9);
+  }
 }
-.reize-container:hover img,
-.resize-container:active img {
-  outline: 2px dashed rgba(222,60,80,.9);
+
+.resize-handle {
+  position: absolute;
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: rgba(222,60,80,.9);
+  z-index: 999;
+  bottom: -5px;
+  right: -5px;
+  cursor: se-resize;
 }
