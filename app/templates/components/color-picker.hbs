@@ -1,0 +1,4 @@
+<h3 id="color-picker-header">Pick the {{drink-type}} color</h3>
+{{#each colorsCollection as |color|}}
+  <div class="color-cell" style="background-color:{{color.hexNum}}"><p class="color-name">{{color.name}}</p></div>
+{{/each}}

@@ -1,0 +1,49 @@
+// the default for web dekspot size
+$circle-radius-web: 50px;
+$circle-margin-web: 10px;
+/*Work in progress on making color-picker responsive
+$breakpoints: (phone: 640px, 
+               tablet: 768px, 
+               desktop: 1024px) !default;
+*/
+#color-picker-main-div {
+  width: 50%;
+  margin: auto;
+  outline: solid 2px green;
+}
+
+#color-picker-header {
+  text-align: center;
+}
+
+.color-cell {
+  display: inline-block;
+  border: solid 1px red;
+  height: $circle-radius-web*2;
+  width: $circle-radius-web*2;
+  -moz-border-radius: $circle-radius-web;
+  -webkit-border-radius: $circle-radius-web;
+  border-radius: $circle-radius-web;
+  margin: $circle-margin-web; 
+}
+
+.color-name {
+  text-align: center;
+  vertical-align: middle;
+  line-height: $circle-radius-web*2;
+  margin: 0; 
+}
+
+// Responsive circles
+/* @include media("<phone") {
+  $circle-radius-web: 15px;
+}
+
+@include media(">phone", "<tablet") {
+  $circle-radius-web: 30px;
+}
+
+@include media(">tablet", "<950px") {
+  $circle-radius-web: 40px;
+} 
+*/

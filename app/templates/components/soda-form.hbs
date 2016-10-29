@@ -61,6 +61,9 @@
       <input type="checkbox" checked={{checked}} value={{value}} onchange={{action 'setCaffeinated' value='target.checked'}}/>
     </fieldset>
   </div>
+  <div id='color-picker-main-div'>
+    {{color-picker drink-type='soda'}}
+  </div>
   <div class="submit-button">
     <button type="submit" disabled={{soda.isNotValid}}>Save</button>
   </div>
