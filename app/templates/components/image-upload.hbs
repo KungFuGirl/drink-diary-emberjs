@@ -1,4 +1,6 @@
 <div class="resize-container">
-  <img class="resize-image" src={{img_src}} alt="image">
-  {{image-upload-resize-handle}}
+  <img class="resize-image" alt="image">
+  {{image-upload-resize-handle 
+    onStartResize=(action "saveEventState")
+    onDragResize=(action "resizing")}}
 </div>
