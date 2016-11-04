@@ -2,7 +2,7 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('country', 'Unit | Model | country', {
   // Specify the other units that are required for this test.
-  needs: ['model:wine']
+  //  needs: ['model:wine']
 });
 
 test('it exists', function(assert) {
